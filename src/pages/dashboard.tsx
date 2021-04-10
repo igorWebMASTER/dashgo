@@ -1,7 +1,66 @@
 import { Header } from "../components/Header";
-import { Flex, SimpleGrid, Text, Box } from "@chakra-ui/react";
+import { Flex, SimpleGrid, Text, Box, theme } from "@chakra-ui/react";
+import dynamic from 'next/dynamic';
 import { Sidebar } from "../components/Sidebar";
-import Chart from 'react-apexcharts';
+
+
+const Chart = dynamic(() => import('react-apexcharts'), {
+  ssr: false,
+})
+
+const options = {
+  chart: {
+    toolbar: {
+      show: false,
+    },
+    zoom: {
+      enabled: false,
+    },
+    forecolor: theme.colors.gray[500],
+  },
+  grid: {
+      show: false,
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  tooltip: {
+    enabled: false,
+  },
+  xaxis: {
+    type: 'datetime',
+    axisBorder: {
+      color: theme.colors.gray[400]
+    },
+    axistricks: {
+      color: theme.colors.gray[400]
+    },
+    categories : [
+      '2021-03-18T00:00:000Z',
+      '2021-03-19T00:00:000Z',
+      '2021-03-20T00:00:000Z',
+      '2021-03-21T00:00:000Z',
+      '2021-03-22T00:00:000Z',
+      '2021-03-23T00:00:000Z',
+      '2021-03-24T00:00:000Z',
+
+    ],
+  },
+   fill: {
+     opacity: 0.3,
+     type:'gradient',
+     gradient: {
+        shade: 'dark',
+        opacityFrom: 0.7,
+        opacityTo: 0.3
+     }
+   } 
+}
+
+const series = [
+  { name: 'sereis 1' , data: [ 31, 51 , 18 ,59, 42,56,10] }
+]
+
 
 export default function Dashboard(){
   return (
@@ -22,9 +81,10 @@ export default function Dashboard(){
               p="8"
               bgColor="gray.800"
               borderRadius={8}
-              // pb="4"
+              pb="4"
             >
               <Text fontSize="lg" mb="4">Inscritos da semana</Text>
+                <Chart options={options} series={series} type="area" height={160}  />
             </Box>
             <Box
               p="8"
@@ -32,6 +92,7 @@ export default function Dashboard(){
               borderRadius={8}
             >
               <Text fontSize="lg" mb="4">Taxa de abertura</Text>
+                <Chart options={options} series={series} type="area" height={160}  />
             </Box>
           </SimpleGrid>
       </Flex>
