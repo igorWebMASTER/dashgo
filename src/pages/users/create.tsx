@@ -14,7 +14,7 @@ export default function CreateUser(){
       <Flex w="100%" mx="auto" px="6" >
         <Sidebar />
 
-        <Box flex="1" borderRadius={8}  bg="gray.800"  p="8" >
+        <Box flex="1" borderRadius={8}  bg="gray.800"  p="8" mt="2" >
             <Heading size="lg" fontWeight="normal">Criar usuário</Heading>
 
             <Divider my="6" borderColor="gray.700" />
@@ -34,7 +34,7 @@ export default function CreateUser(){
             <Flex mt="8" justify="flex-end">
                <HStack spacing="4">
                   <Button colorScheme="whiteAlpha">Cancelar</Button>
-                  <Button colorScheme="pink">Cancelar</Button>
+                  <Button colorScheme="pink">Salvar</Button>
                </HStack>
             </Flex>
         </Box>
