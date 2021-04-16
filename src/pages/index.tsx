@@ -5,12 +5,15 @@ import { Input } from '../components/Form/Input';
 type SignInFormData = {
   email: string;
   password: string;
+  error: 
 }
 
 export default function Home() {
-  const {register, handleSubmit, formState} = useForm()
+  const {register, handleSubmit, formState, formState: { errors }} = useForm()
 
-   const handleSignin:SubmitHandler<SignInFormData>  = async (values) => {
+  console.log(errors)
+ 
+  const handleSignin:SubmitHandler<SignInFormData>  = async (values) => {
     await new Promise(resolve => setTimeout(resolve, 2000))
 
     console.log(values)
@@ -38,7 +41,9 @@ export default function Home() {
             type="email"
             name="email" 
             label="E-mail"
-            {...register('email')}
+            error={errors.email}
+            {...register("email", {required: 'É obrigatório o e-email', maxLength: 80})} 
+          
           />
 
           <Input
