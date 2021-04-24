@@ -1,6 +1,7 @@
 
 import { Box, Button, Flex, Heading, Icon, Table, Th, Thead, Tr, Checkbox, Tbody, Td, Text, useBreakpointValue } from "@chakra-ui/react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 
@@ -15,6 +16,11 @@ export default function UserList(){
     lg: true
   })
 
+  useEffect(() => {
+    fetch('http://localhost:3000/users').then(response => response.json)
+    .then(data => console.log(data))
+  })
+
   return (
     <Box>
       <Header />
@@ -22,7 +28,13 @@ export default function UserList(){
       <Flex w="100%" mx="auto" px="6" >
         <Sidebar />
 
-        <Box flex="1" borderRadius={8}  bg="gray.800"  p="8" >
+        <Box 
+          flex="1" 
+          borderRadius={8}  
+          bg="gray.800"  
+          p="8"
+          mt="2" 
+        >
             <Flex mb="8" justify="space-between" align="center">
               <Heading size="lg" fontWeight="normal">
                 Usuários

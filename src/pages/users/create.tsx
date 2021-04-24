@@ -75,7 +75,6 @@ export default function CreateUser(){
                   label="E-mail" 
                   error={errors.email}
                   {...register('email')} 
-
                />
               </SimpleGrid>
 
@@ -86,7 +85,6 @@ export default function CreateUser(){
                   label="Senha"  
                   error={errors.password}
                   {...register('password')} 
-
                 />
                 <Input 
                   name="password_confirmation" 
