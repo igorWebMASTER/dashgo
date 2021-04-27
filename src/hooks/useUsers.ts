@@ -1,6 +1,12 @@
 import { useQuery } from "react-query";
 import { api } from "../services/api";
 
+type User = {
+  id: string;
+  name: string;
+  email: string;
+}
+
 async function getUsers(){
   
     const { data } =  await api.get('users')
