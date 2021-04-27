@@ -9,29 +9,10 @@ import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
-import { api } from "../../services/api";
- 
-export default function UserList(){
-    const { data, isLoading, isFetching, error } = useQuery('users', async () => {
-      const {data} =  await api.get('users')
+import { useUsers } from "../../hooks/useUsers";
 
-      const users = data.users.map(user => {
-        return {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
-            day: '2-digit',
-            month: 'long',
-            year: 'numeric'
-          })
-        }
-      })
-      
-      return users;
-  }, {
-    staleTime: 1000 * 5 // 5 seconds
-  });
+export default function UserList(){
+    const { data, isLoading, isFetching, error } = useUsers()
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -106,7 +87,7 @@ export default function UserList(){
                         <Text fontSize="sm" color="gray.300" >{user.email}</Text>
                       </Box>
                     </Td>
-                    {isWideVersion && <Td>{user.created_at}</Td>} 
+                    {isWideVersion && <Td>{user.createdAt}</Td>} 
                   </Tr>
                 )})}
               </Tbody>
