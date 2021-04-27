@@ -75,7 +75,7 @@ export default function CreateUser(){
                   label="E-mail" 
                   error={errors.email}
                   {...register('email')} 
-               />
+              />
               </SimpleGrid>
 
               <SimpleGrid minChildWidth="240px" spacing={["6" , "8"]} w="100%">
@@ -97,7 +97,7 @@ export default function CreateUser(){
             </VStack>
 
             <Flex mt="8" justify="flex-end">
-               <HStack spacing="4">
+                <HStack spacing="4">
                   <Link href="/users" passHref>
                     <Button as="a" colorScheme="whiteAlpha">Cancelar</Button>
                   </Link>
@@ -108,7 +108,7 @@ export default function CreateUser(){
                   >
                     Salvar
                   </Button>
-               </HStack>
+                </HStack>
             </Flex>
         </Box>
       </Flex>
