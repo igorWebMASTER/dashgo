@@ -45,7 +45,7 @@ export function makeServer(){
           const pageEnd = pageStart + Number(per_page);
 
           const users = this.serialize(schema.all('user'))
-            .slice(pageStart, pageEnd)
+            .users.slice(pageStart, pageEnd)
 
           return new Response(
             200,
@@ -55,6 +55,7 @@ export function makeServer(){
           // 10 - 20
       });
 
+      this.post('/users/:id');
       this.post('/users');
 
       this.namespace = '';
