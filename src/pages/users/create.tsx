@@ -5,7 +5,7 @@ import { Input } from "../../components/Form/Input";
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver} from '@hookform/resolvers/yup'
-
+import { useMutation  } from 'react-query'
 
 import { Header } from "../../components/Header";
 import { Sidebar } from "../../components/Sidebar";
@@ -28,6 +28,8 @@ const createUserFormSchema = yup.object().shape({
 })
 
 export default function CreateUser(){
+  const createUser = useMutation('createUser')
+
   const { register, handleSubmit, formState} = useForm({
     resolver: yupResolver(createUserFormSchema)
   })  
