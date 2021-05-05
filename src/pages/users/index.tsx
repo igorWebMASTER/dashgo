@@ -3,18 +3,21 @@ import {useState} from 'react'
 import { Box, Link, Button, Flex, Heading, Icon, Table, Th, Thead, Tr, Checkbox, Tbody, Td, Text, useBreakpointValue, Spinner } from "@chakra-ui/react";
 import { RiAddLine } from "react-icons/ri";
 import NextLink from "next/link";
+import { GetServerSideProps } from 'next';
 
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
-import { useUsers } from "../../services/hooks/useUsers";
+import { useUsers, getUsers } from "../../services/hooks/useUsers";
 import { queryClient } from '../../services/queryClient';
 import { api } from '../../services/api';
 
 
-export default function UserList(){
+export default function UserList({ users }){
   const [page, setPage]  = useState(1)
-  const { data, isLoading, isFetching, error } = useUsers(page)
+  const { data, isLoading, isFetching, error } = useUsers(page, {
+    initialData: users,
+  })
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -35,7 +38,13 @@ export default function UserList(){
     <Box>
       <Header />
 
-      <Flex w="100%" mx="auto" px="6" >
+      <Flex 
+        w="100%" 
+          my="6" 
+          maxWidth={1480} 
+          mx="auto" 
+          px="6"
+      >
         <Sidebar />
 
         <Box 
@@ -113,3 +122,14 @@ export default function UserList(){
     </Box>
   )
 }
+
+// export const getServerSideProps : GetServerSideProps = async () => {
+//   const { users, totalCount } = await getUsers(1)
+
+//   return {
+//     props: {
+//       users, 
+//       totalCount
+//     }
+//   }
+// }
